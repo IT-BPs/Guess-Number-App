@@ -1,6 +1,6 @@
 'use strict';
 
-// Download highscore  from localStorage,if exists, or set it as  0
+// Download highscore from localStorage, if exists, or set it as 0
 let highscore = localStorage.getItem('highscore') || 0;
 document.querySelector('.highscore').textContent = highscore;
 
@@ -15,7 +15,11 @@ document.querySelector('.check').addEventListener('click', function () {
     if (!guess) {
         document.querySelector('.message').textContent = '⛔ No number';
 
-        // When the player wins
+    // When the guess is out of range
+    } else if (guess > 51) {
+        document.querySelector('.message').textContent = '🚫 Given number is out of range';
+
+    // When the player wins
     } else if (guess === secretNumber) {
         document.querySelector('.message').textContent = '🎉 Correct number';
         document.querySelector('.number').textContent = secretNumber;
@@ -29,10 +33,9 @@ document.querySelector('.check').addEventListener('click', function () {
             document.querySelector('.highscore').textContent = highscore;
         }
 
-        
         score = 0;
 
-        // When the guess is too high
+    // When the guess is too high
     } else if (guess > secretNumber) {
         if (score > 0) {
             document.querySelector('.message').textContent = '📈 Too high!';
@@ -43,7 +46,7 @@ document.querySelector('.check').addEventListener('click', function () {
             document.querySelector('.score').textContent = 0;
         }
 
-        // When the guess is too low
+    // When the guess is too low
     } else if (guess < secretNumber) {
         if (score > 0) {
             document.querySelector('.message').textContent = '📉 Too low!';
