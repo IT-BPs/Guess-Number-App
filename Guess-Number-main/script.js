@@ -1,5 +1,9 @@
 'use strict';
 
+// Download highscore  from localStorage,if exists, or set it as  0
+let highscore = localStorage.getItem('highscore') || 0;
+document.querySelector('.highscore').textContent = highscore;
+
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 30;
 
@@ -17,6 +21,16 @@ document.querySelector('.check').addEventListener('click', function () {
         document.querySelector('.number').textContent = secretNumber;
         document.querySelector('body').style.backgroundColor = '#60b347';
         document.querySelector('.number').style.width = '30rem';
+
+        // Update of highscore if score is higher than previous one
+        if (score > highscore) {
+            highscore = score;
+            localStorage.setItem('highscore', highscore); // safe highscore  to localStorage
+            document.querySelector('.highscore').textContent = highscore;
+        }
+
+        
+        score = 0;
 
         // When the guess is too high
     } else if (guess > secretNumber) {
