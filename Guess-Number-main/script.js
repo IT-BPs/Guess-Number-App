@@ -16,7 +16,7 @@ document.querySelector('.check').addEventListener('click', function () {
         document.querySelector('.message').textContent = '⛔ No number';
 
     // When the guess is out of range
-    } else if (guess > 51) {
+    } else if (guess >= 51) {
         document.querySelector('.message').textContent = '🚫 Given number is out of range';
 
     // When the player wins
