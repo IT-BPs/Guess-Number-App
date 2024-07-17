@@ -15,8 +15,8 @@ document.querySelector('.check').addEventListener('click', function () {
     if (!guess) {
         document.querySelector('.message').textContent = '⛔ No number';
 
-    // When the guess is out of range
-    } else if (guess >= 51) {
+    // When the guess is out of range (above 50)
+    } else if (guess > 50) {
         document.querySelector('.message').textContent = '🚫 Given number is out of range';
 
     // When the player wins
@@ -29,7 +29,7 @@ document.querySelector('.check').addEventListener('click', function () {
         // Update of highscore if score is higher than previous one
         if (score > highscore) {
             highscore = score;
-            localStorage.setItem('highscore', highscore); // safe highscore  to localStorage
+            localStorage.setItem('highscore', highscore); // save highscore to localStorage
             document.querySelector('.highscore').textContent = highscore;
         }
 
